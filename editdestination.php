@@ -18,7 +18,6 @@
  * Reset pending secure messenger setup destination.
  *
  * @package     factor_securemessenger
- * @subpackage  tool_mfa
  * @copyright   2026 prevail90
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

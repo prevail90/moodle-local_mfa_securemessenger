@@ -25,7 +25,6 @@ use tool_mfa\local\secret_manager;
  * Secure messenger MFA factor implementation.
  *
  * @package     factor_securemessenger
- * @subpackage  tool_mfa
  * @copyright   2026 prevail90
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
