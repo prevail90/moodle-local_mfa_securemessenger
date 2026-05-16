@@ -58,6 +58,7 @@ $string['phonenumber'] = 'Phone number';
 $string['pluginname'] = 'Secure messenger';
 $string['privacy:metadata'] = 'The secure messenger factor does not store personal data outside the MFA subsystem.';
 $string['revokefactorconfirmation'] = 'Remove secure messenger {$a}?';
+$string['settings:shortdescription'] = 'Send one-time codes through Signal, WhatsApp, Telegram, or another configured secure messenger.';
 $string['settings:duration'] = 'Validity duration';
 $string['settings:duration_help'] = 'The period of time that the code is valid.';
 $string['settings:customoption'] = 'Custom option {$a}';
@@ -69,6 +70,9 @@ $string['settings:optionenabled_help'] = 'Enabled options are shown to users dur
 $string['settings:optiongateway'] = 'SMS gateway';
 $string['settings:optiongateway_help'] = 'Select the SMS gateway instance that sends messages for this option, or <a href="{$a}">create a new gateway</a>.';
 $string['settings:optionheading'] = '{$a}';
+$string['settings:optionenablednamed'] = 'Enable {$a}';
+$string['settings:optiongatewaynamed'] = '{$a} SMS gateway';
+$string['settings:accountcheckgatewaynamed'] = '{$a} account check SMS gateway';
 $string['settings:optionname'] = 'Option name';
 $string['settings:optionname_help'] = 'The name shown to users for this custom messenger option.';
 $string['settings:setupdesc'] = 'To use secure messenger MFA, you first need to <a href="{$a}">set up an SMS gateway</a>.';

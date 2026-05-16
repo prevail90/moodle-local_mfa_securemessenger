@@ -96,6 +96,12 @@ if ($ADMIN->fulltree) {
 
     for ($i = 1; $i <= \factor_securemessenger\helper::OPTION_LIMIT; $i++) {
         $optionname = $fixedoptions[$i] ?? get_string('settings:customoption', 'factor_securemessenger', $i - 3);
+        $enabledlabel = isset($fixedoptions[$i])
+            ? get_string('settings:optionenablednamed', 'factor_securemessenger', $optionname)
+            : get_string('settings:optionenabled', 'factor_securemessenger');
+        $gatewaylabel = isset($fixedoptions[$i])
+            ? get_string('settings:optiongatewaynamed', 'factor_securemessenger', $optionname)
+            : get_string('settings:optiongateway', 'factor_securemessenger');
         $settings->add(
             new admin_setting_heading(
                 'factor_securemessenger/option' . $i . 'heading',
@@ -107,7 +113,7 @@ if ($ADMIN->fulltree) {
         $settings->add(
             new admin_setting_configcheckbox(
                 'factor_securemessenger/option' . $i . 'enabled',
-                new lang_string('settings:optionenabled', 'factor_securemessenger'),
+                $enabledlabel,
                 new lang_string('settings:optionenabled_help', 'factor_securemessenger'),
                 $i <= 3 ? 1 : 0,
             ),
@@ -128,7 +134,7 @@ if ($ADMIN->fulltree) {
         $settings->add(
             new admin_setting_configselect(
                 'factor_securemessenger/option' . $i . 'gateway',
-                new lang_string('settings:optiongateway', 'factor_securemessenger'),
+                $gatewaylabel,
                 new lang_string('settings:optiongateway_help', 'factor_securemessenger', $smsconfigureurl),
                 0,
                 $gatewayoptions,
@@ -139,7 +145,7 @@ if ($ADMIN->fulltree) {
             $settings->add(
                 new admin_setting_configselect(
                     'factor_securemessenger/option' . $i . 'checkgateway',
-                    new lang_string('settings:accountcheckgateway', 'factor_securemessenger'),
+                    get_string('settings:accountcheckgatewaynamed', 'factor_securemessenger', $optionname),
                     new lang_string('settings:accountcheckgateway_help', 'factor_securemessenger'),
                     0,
                     $gatewayoptions,
