@@ -24,7 +24,7 @@ use core_sms\hook\before_gateway_disabled;
  *
  * @package     factor_securemessenger
  * @subpackage  tool_mfa
- * @copyright   2026 William Nelson
+ * @copyright   2026 prevail90
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class hook_listener {
