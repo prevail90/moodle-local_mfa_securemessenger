@@ -82,3 +82,4 @@ $string['setupfactorbutton'] = 'Set up';
 $string['setupsubmitcode'] = 'Save';
 $string['setupsubmitdestination'] = 'Send code';
 $string['summarycondition'] = 'Using a secure messenger one-time security code';
+$string['warning:otpsendstatus'] = 'The SMS gateway returned {$a}, but a verification code may still have been sent. Enter the code if you received it, or check the selected gateway settings if no code arrives.';

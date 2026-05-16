@@ -197,26 +197,35 @@ class factor extends object_factor_base {
             return $mform;
         }
 
-        $duration = get_config('factor_securemessenger', 'duration');
-        $code = $this->secretmanager->create_secret($duration, true);
+        $submittedcode = optional_param('verificationcode', null, PARAM_ALPHANUM);
         $message = null;
-        if (!empty($code)) {
-            $message = $this->send_verification_code((int) $code, $destination, $option);
-        }
+        $sendstatus = null;
 
-        if (empty($message) || $message->status !== \core_sms\message_status::GATEWAY_SENT) {
-            $this->secretmanager->cleanup_temp_secrets();
-            $status = $message ? $message->status->value : get_string('error');
-            $mform->addElement(
-                'html',
-                $OUTPUT->notification(
-                    get_string('error:otpsendfailed', 'factor_securemessenger', $status),
-                    'error'
-                )
-            );
-            $this->add_edit_destination_button($mform);
-            $mform->disable_form_change_checker();
-            return $mform;
+        if ($submittedcode === null) {
+            $duration = get_config('factor_securemessenger', 'duration');
+            $code = $this->secretmanager->create_secret($duration, true);
+            if (!empty($code)) {
+                $message = $this->send_verification_code((int) $code, $destination, $option);
+            }
+
+            if (empty($message)) {
+                $this->secretmanager->cleanup_temp_secrets();
+                $mform->addElement(
+                    'html',
+                    $OUTPUT->notification(
+                        get_string('error:otpsendfailed', 'factor_securemessenger', get_string('error')),
+                        'error'
+                    )
+                );
+                $this->add_edit_destination_button($mform);
+                $mform->disable_form_change_checker();
+                return $mform;
+            }
+
+            if ($message->status !== \core_sms\message_status::GATEWAY_SENT) {
+                $sendstatus = $message->status->value;
+                debugging('Secure messenger OTP gateway returned status: ' . $sendstatus, DEBUG_DEVELOPER);
+            }
         }
 
         $description = get_string('setupcodedesc', 'factor_securemessenger', (object) [
@@ -224,6 +233,16 @@ class factor extends object_factor_base {
             'option' => s($option->name),
         ]);
         $mform->addElement('html', \html_writer::tag('p', $OUTPUT->notification($description, 'success')));
+
+        if ($sendstatus !== null) {
+            $mform->addElement(
+                'html',
+                $OUTPUT->notification(
+                    get_string('warning:otpsendstatus', 'factor_securemessenger', $sendstatus),
+                    'warning'
+                )
+            );
+        }
 
         $mform->addElement(new \tool_mfa\local\form\verification_field());
         $mform->setType('verificationcode', PARAM_ALPHANUM);
