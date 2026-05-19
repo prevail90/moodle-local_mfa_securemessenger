@@ -25,10 +25,10 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'factor_securemessenger';
-$plugin->version = 2026051603;
+$plugin->version = 2026051900;
 $plugin->requires = 2024100700;
 $plugin->maturity = MATURITY_ALPHA;
-$plugin->release = '0.1.2';
+$plugin->release = '0.1.3';
 $plugin->dependencies = [
     'tool_mfa' => 2024100700,
 ];
