@@ -16,7 +16,7 @@
 
 namespace factor_securemessenger\privacy;
 
-use core_privacy\local\metadata\null_provider;
+use core_privacy\local\metadata\collection;
 
 /**
  * Privacy provider.
@@ -25,14 +25,25 @@ use core_privacy\local\metadata\null_provider;
  * @copyright   2026 prevail90
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class provider implements null_provider {
+class provider implements \core_privacy\local\metadata\provider {
 
     /**
-     * Return the language string explaining this plugin's storage.
+     * Describe personal data sent to configured SMS gateways.
      *
-     * @return string
+     * @param collection $collection The metadata collection.
+     * @return collection
      */
-    public static function get_reason(): string {
-        return 'privacy:metadata';
+    public static function get_metadata(collection $collection): collection {
+        $collection->add_external_location_link(
+            'securemessenger_gateway',
+            [
+                'destination' => 'privacy:metadata:securemessenger_gateway:destination',
+                'verificationcode' => 'privacy:metadata:securemessenger_gateway:verificationcode',
+                'accountcheck' => 'privacy:metadata:securemessenger_gateway:accountcheck',
+            ],
+            'privacy:metadata:securemessenger_gateway',
+        );
+
+        return $collection;
     }
 }

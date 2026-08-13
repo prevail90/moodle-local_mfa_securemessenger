@@ -1,0 +1,41 @@
+name: Create Moodle release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out release tag
+        uses: actions/checkout@v4
+
+      - name: Read plugin version
+        id: version
+        run: |
+          version=$(grep -oP "\$plugin->version\s*=\s*\K\d+" version.php)
+          test -n "$version"
+          echo "number=$version" >> "$GITHUB_OUTPUT"
+          echo "archive=factor_securemessenger_$version.zip" >> "$GITHUB_OUTPUT"
+
+      - name: Create Moodle plugin archive
+        run: |
+          mkdir -p package/securemessenger
+          cp -a README.md LICENSE .gitignore classes db editdestination.php lang settings.php version.php package/securemessenger/
+          (
+            cd package
+            zip -qr "../${{ steps.version.outputs.archive }}" securemessenger
+          )
+
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" "${{ steps.version.outputs.archive }}" \
+            --title "Secure Messenger $GITHUB_REF_NAME" \
+            --generate-notes

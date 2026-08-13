@@ -17,7 +17,7 @@
 namespace factor_securemessenger;
 
 /**
- * Shared helpers for the secure messenger MFA factor.
+ * Shared helpers for the Secure Messenger MFA factor.
  *
  * @package     factor_securemessenger
  * @copyright   2026 prevail90

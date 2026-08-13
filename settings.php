@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Settings for the secure messenger MFA factor.
+ * Settings for the Secure Messenger MFA factor.
  *
  * @package     factor_securemessenger
  * @copyright   2026 prevail90

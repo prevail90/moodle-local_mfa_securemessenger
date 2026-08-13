@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Reset pending secure messenger setup destination.
+ * Reset pending Secure Messenger setup destination.
  *
  * @package     factor_securemessenger
  * @copyright   2026 prevail90

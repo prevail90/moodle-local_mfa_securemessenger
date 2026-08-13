@@ -327,7 +327,7 @@ class factor extends object_factor_base {
     }
 
     /**
-     * Create the user's secure messenger factor.
+     * Create the user's Secure Messenger factor.
      *
      * @param stdClass $data Submitted data.
      * @return stdClass|null

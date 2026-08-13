@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Hook registrations for the secure messenger MFA factor.
+ * Hook registrations for the Secure Messenger MFA factor.
  *
  * @package     factor_securemessenger
  * @copyright   2026 prevail90

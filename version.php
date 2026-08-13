@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Secure messenger MFA factor version details.
+ * Secure Messenger MFA factor version details.
  *
  * @package     factor_securemessenger
  * @copyright   2026 prevail90
@@ -25,10 +25,10 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'factor_securemessenger';
-$plugin->version = 2026051900;
+$plugin->version = 2026081300;
 $plugin->requires = 2024100700;
 $plugin->maturity = MATURITY_ALPHA;
-$plugin->release = '0.1.3';
+$plugin->release = '0.1.4';
 $plugin->dependencies = [
     'tool_mfa' => 2024100700,
 ];
