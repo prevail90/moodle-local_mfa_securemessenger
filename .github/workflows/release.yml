@@ -18,7 +18,7 @@ jobs:
       - name: Read plugin version
         id: version
         run: |
-          version=$(grep -oP "\$plugin->version\s*=\s*\K\d+" version.php)
+          version=$(grep -oP '\$plugin->version\s*=\s*\K\d+' version.php)
           test -n "$version"
           echo "number=$version" >> "$GITHUB_OUTPUT"
           echo "archive=factor_securemessenger_$version.zip" >> "$GITHUB_OUTPUT"
